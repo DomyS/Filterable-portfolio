@@ -4,16 +4,35 @@
         <meta charset="utf-8">
         <title>jQuery Filter</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $(".button").click(function(){
+                var value = $(this).attr("data-filter");
+                if(value == "all") {
+                    $(".filter").show("1000");
+                } else {
+                    $(".filter").not("."+value).hide("1000");
+                    $(".filter").filter("."+value).show("1000");
+                }
+                $("ul .button").click(function(){
+                    $(this).addClass('active').siblings().removeClass('active');
+                })
+            })
+        })
+        </script>
+    
     </head>
     <body>
         <div class="container">
             <ul>
-                <li class="all" data-filter="website">All</li>
+                <li class="button active" data-filter="all">All</li>
                 <li class="button" data-filter="website">Website</li>
-                <li class="button" data-filter="graphics">Website</li>
-                <li class="button" data-filter="psd">Website</li>
-                <li class="button" data-filter="logo">Website</li>
-                <li class="button" data-filter="application">Website</li>
+                <li class="button" data-filter="graphics">Graphics</li>
+                <li class="button" data-filter="psd">PSD</li>
+                <li class="button" data-filter="logo">Logo</li>
+                <li class="button" data-filter="application">Application</li>
+                <div style="clear: both;"></div>
             </ul>
             <div class="box filter website">Website</div>
             <div class="box filter graphics">Graphics</div>
@@ -30,6 +49,8 @@
             <div class="box filter psd">PSD</div>
             <div class="box filter logo">Logo</div>
             <div class="box filter application">Application</div>
+            <div class="box filter psd">PSD</div>
+            
         </div>
     </body>
 </html>
